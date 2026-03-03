@@ -1,50 +1,70 @@
+-- Caminho onde o lazy.nvim será instalado
+-- stdpath("data") → ~/.local/share/nvim no Linux
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not (vim.uv or vim.loop).fs_stat(lazypath) then
-  local lazyrepo = "https://github.com/folke/lazy.nvim.git"
-  local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
-  if vim.v.shell_error ~= 0 then
-    vim.api.nvim_echo({
-      { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
-      { out,                            "WarningMsg" },
-      { "\nPress any key to exit..." },
-    }, true, {})
-    vim.fn.getchar()
-    os.exit(1)
-  end
+
+-- Se a pasta não existir, clona o repositório
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git", "clone",
+    "--filter=blob:none",          -- clona sem baixar blobs (mais rápido)
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable",             -- usa a branch estável
+    lazypath,
+  })
 end
+
+-- Adiciona lazy.nvim ao runtime path para que possa ser carregado com require
 vim.opt.rtp:prepend(lazypath)
 
+-- =============================================================================
+-- SETUP DO LAZY.NVIM
+-- Cada string em "import" aponta para um arquivo dentro de lua/plugins/
+-- O lazy.nvim carrega todos os arquivos dessa pasta automaticamente
+-- =============================================================================
+
 require("lazy").setup({
-  spec = {
-    -- add LazyVim and import its plugins
-    { "LazyVim/LazyVim",               import = "lazyvim.plugins" },
-    { "zbirenbaum/copilot.lua" },
-    { "CopilotC-Nvim/CopilotChat.nvim" },
-    -- import/override with your plugins
-    { import = "plugins" },
+
+  -- Em vez de listar plugins aqui, importamos os arquivos de lua/plugins/
+  -- Isso mantém cada grupo de plugins no seu próprio arquivo
+  { import = "plugins" },
+
+}, {
+  -- ==========================================================================
+  -- CONFIGURAÇÕES DO LAZY.NVIM
+  -- ==========================================================================
+
+  ui = {
+    border = "rounded", -- borda arredondada na janela do :Lazy
+    icons = {
+      cmd        = "",
+      config     = "",
+      event      = "",
+      ft         = "",
+      init       = "⚙",
+      keys       = "🗝",
+      plugin     = "",
+      runtime    = "󰢹",
+      source     = "",
+      start      = "",
+      task       = "✔ ",
+    },
   },
-  defaults = {
-    -- By default, only LazyVim plugins will be lazy-loaded. Your custom plugins will load during startup.
-    -- If you know what you're doing, you can set this to `true` to have all your custom plugins lazy-loaded by default.
-    lazy = false,
-    -- It's recommended to leave version=false for now, since a lot the plugin that support versioning,
-    -- have outdated releases, which may break your Neovim install.
-    version = false, -- always use the latest git commit
-    -- version = "*", -- try installing the latest stable version for plugins that support semver
-  },
-  install = { colorscheme = { "tokyonight", "habamax" } },
+
   checker = {
-    enabled = true, -- check for plugin updates periodically
-    notify = false, -- notify on update
-  },                -- automatically check for plugin updates
+    enabled = true,  -- verifica atualizações disponíveis em background
+    notify = false,  -- mas não exibe notificação (você decide quando rodar :Lazy update)
+  },
+
+  change_detection = {
+    notify = false,  -- não notifica quando detecta mudança nos arquivos de config
+  },
+
   performance = {
     rtp = {
-      -- disable some rtp plugins
+      -- Desabilita plugins nativos do Neovim que você provavelmente não usa
+      -- Isso reduz o tempo de inicialização
       disabled_plugins = {
         "gzip",
-        -- "matchit",
-        -- "matchparen",
-        -- "netrwPlugin",
         "tarPlugin",
         "tohtml",
         "tutor",
