@@ -3,7 +3,6 @@
 -- Add any additional options here
 local opt = vim.opt
 
-
 vim.g.mapleader = ","
 vim.g.maplocalleader = ","
 
@@ -16,8 +15,15 @@ vim.api.nvim_create_autocmd("User", {
     callback = function()
         local themes = {
             "github_dark",
-            "catppuccin",
+            "catppuccin-mocha",
+            "catppuccin-frappe",
+            "catppuccin-macchiato",
+            "kanagawa-dragon",
             "kanagawa-wave",
+            "tokyonight-night",
+            "tokyonight-moon",
+            "tokyonight-storm",
+            "dracula"
         }
         math.randomseed(os.time())
         local chosen = themes[math.random(#themes)]
