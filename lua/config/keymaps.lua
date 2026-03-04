@@ -84,7 +84,7 @@ map("n", "<leader>gg", "<cmd>LazyGit<CR>", vim.tbl_extend("force", opts, { desc 
 
 map("n", "gd", vim.lsp.buf.definition, vim.tbl_extend("force", opts, { desc = "Ir para definição" }))
 map("n", "gr", vim.lsp.buf.references, vim.tbl_extend("force", opts, { desc = "Referências" }))
-map("n", "K",  vim.lsp.buf.hover, vim.tbl_extend("force", opts, { desc = "Hover doc" }))
+map("n", "K", vim.lsp.buf.hover, vim.tbl_extend("force", opts, { desc = "Hover doc" }))
 map("n", "<leader>rn", vim.lsp.buf.rename, vim.tbl_extend("force", opts, { desc = "Renomear símbolo" }))
 map("n", "<leader>ca", vim.lsp.buf.code_action, vim.tbl_extend("force", opts, { desc = "Code action" }))
 map("n", "<leader>d", vim.diagnostic.open_float, vim.tbl_extend("force", opts, { desc = "Diagnóstico flutuante" }))
@@ -98,4 +98,5 @@ map("n", "]d", vim.diagnostic.goto_next, vim.tbl_extend("force", opts, { desc = 
 map("n", "<S-l>", "<cmd>BufferLineCycleNext<CR>", vim.tbl_extend("force", opts, { desc = "Próximo buffer" }))
 map("n", "<S-h>", "<cmd>BufferLineCyclePrev<CR>", vim.tbl_extend("force", opts, { desc = "Buffer anterior" }))
 map("n", "<leader>bp", "<cmd>BufferLineTogglePin<CR>", vim.tbl_extend("force", opts, { desc = "Pin buffer" }))
-map("n", "<leader>bx", "<cmd>BufferLineCloseOthers<CR>", vim.tbl_extend("force", opts, { desc = "Fechar outros buffers" }))
+map("n", "<leader>bx", "<cmd>BufferLineCloseOthers<CR>",
+    vim.tbl_extend("force", opts, { desc = "Fechar outros buffers" }))
