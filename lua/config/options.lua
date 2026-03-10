@@ -21,21 +21,25 @@ vim.api.nvim_create_autocmd("User", {
     once = true,
     callback = function()
         local themes = {
+            "github_dark",
+            "github_dark_high_contrast",
+            "github_dark_tritanopia",
+            "github_dark_default",
+            "catppuccin-mocha",
             "catppuccin-frappe",
             "catppuccin-macchiato",
-            "catppuccin-mocha",
-            "dracula",
-            "everforest",
-            "github_dark",
             "kanagawa-dragon",
             "kanagawa-wave",
-            "tokyonight-moon",
             "tokyonight-night",
+            "tokyonight-moon",
             "tokyonight-storm",
+            "dracula",
+            "everforest"
         }
         math.randomseed(os.time())
         local chosen = themes[math.random(#themes)]
         vim.cmd.colorscheme(chosen)
+        vim.notify("colorscheme: " .. chosen, vim.log.levels.INFO, { title = "Theme" })
     end,
 })
 
