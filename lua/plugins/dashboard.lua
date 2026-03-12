@@ -3,6 +3,12 @@ return {
         "folke/snacks.nvim",
         opts = {
             scroll = { enabled = false },
+            terminal = {
+                win = {
+                    position = "right",
+                    width = 0.3,
+                },
+            },
             dashboard = {
                 preset = {
                     header = [[
@@ -33,6 +39,22 @@ return {
 ]],
                 },
             },
+        },
+        keys = {
+            {
+                "<c-/>",
+                function()
+                    Snacks.terminal.toggle(nil, {
+                        win = {
+                            position = "right",
+                            width = 0.3,
+                        },
+                    })
+                end,
+                desc = "Terminal",
+                mode = { "n", "t" },
+            },
+            { "<c-_>", false },
         },
     },
 }
