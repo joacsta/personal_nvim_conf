@@ -9,12 +9,20 @@ vim.g.maplocalleader = ","
 opt.smoothscroll = false
 opt.relativenumber = true
 
+-- =============================================================================
+-- DIAGNOSTICOS
+-- =============================================================================
+
 vim.diagnostic.config({
     float = {
         max_width = 80, -- largura máxima do float
-        wrap = true,    -- quebra o texto
+        wrap = true, -- quebra o texto
     },
 })
+
+-- =============================================================================
+-- TEMAS ALEATORIOS
+-- =============================================================================
 
 vim.api.nvim_create_autocmd("User", {
     pattern = "VeryLazy",
@@ -76,7 +84,7 @@ opt.termguicolors = true -- habilita cores 24-bit (necessário para temas modern
 opt.showmode = false     -- não mostra "-- INSERT --" (a lualine já faz isso)
 opt.cmdheight = 1        -- altura da linha de comando
 opt.pumheight = 10       -- máximo de itens visíveis no menu de autocomplete
-
+vim.opt.laststatus = 3
 -- =============================================================================
 -- COMPORTAMENTO
 -- =============================================================================
