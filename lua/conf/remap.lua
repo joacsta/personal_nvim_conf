@@ -6,7 +6,8 @@ vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 vim.keymap.set("n", "<A-j>", ":m .+1<CR>==")
 vim.keymap.set("n", "<A-k>", ":m .-2<CR>==")
 
-
+-- terminal
+vim.keymap.set("n", "<leader>t", vim.cmd.terminal, { desc = "Terminal" })
 
 -- Navegação entre janelas
 vim.keymap.set('n', '<C-h>', '<C-w>h')
