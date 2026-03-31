@@ -44,6 +44,8 @@ vim.api.nvim_create_autocmd("User", {
 			"dracula",
 			"everforest",
 			"onedark",
+			"ayu-dark",
+			"ayu-mirage",
 		}
 		math.randomseed(os.time())
 		local chosen = themes[math.random(#themes)]

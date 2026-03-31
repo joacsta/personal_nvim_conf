@@ -139,6 +139,7 @@ return {
 	-- ═══════════════════════════════════════════
 	--  OneDark
 	-- ═══════════════════════════════════════════
+
 	{
 		"navarasu/onedark.nvim",
 		lazy = false,
@@ -148,6 +149,21 @@ return {
 				style = "darker", --Default theme style. Choose between 'dark', 'darker', 'cool', 'deep', 'warm', 'warmer' and 'light'
 			})
 			require("onedark").load()
+		end,
+	},
+
+	-- ═══════════════════════════════════════════
+	--  Ayu
+	-- ═══════════════════════════════════════════
+	{
+		"Shatur/neovim-ayu",
+		name = "ayu",
+		lazy = false,
+		priority = 1000,
+		config = function()
+			require("ayu").setup({
+				mirage = false, -- true para a variante mais escura
+			})
 		end,
 	},
 }
