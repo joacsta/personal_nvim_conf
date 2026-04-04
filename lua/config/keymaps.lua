@@ -4,6 +4,10 @@
 --
 -- Atalho para abrir/fechar o Copilot Chat
 
-vim.keymap.set("n", "<leader>M", function() Snacks.dashboard.open() end, { desc = "Main Menu" })
+vim.keymap.set("n", "<leader>M", function()
+	Snacks.dashboard.open()
+end, { desc = "Main Menu" })
 vim.keymap.set("n", "<leader>t", vim.cmd.terminal, { desc = "Terminal" })
 vim.keymap.set("n", "<leader>cw", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Scroll down centralizado" })
+vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Scroll up centralizado" })
